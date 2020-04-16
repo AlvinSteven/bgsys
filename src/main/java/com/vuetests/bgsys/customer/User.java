@@ -1,6 +1,17 @@
 package com.vuetests.bgsys.customer;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.persistence.*;
+
+@Entity
+@Table(name = "cust_user")
+@JsonIgnoreProperties({"handler","hibernateLazyInitializer"})
+
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+
     int id;
     String username;
     String password;
@@ -27,5 +38,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
