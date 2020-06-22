@@ -3,6 +3,11 @@ package com.vuetests.bgsys.utils;
 import java.util.Random;
 
 public class StringUtils {
+    /**
+     * 获取随机字符串
+     * @param length
+     * @return
+     */
     public static String getRandomString(int length) {
         String base = "abcdefghijklmnopqrstuvwxyz0123456789";
         Random random = new Random();
