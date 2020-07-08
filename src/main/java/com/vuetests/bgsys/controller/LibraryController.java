@@ -61,17 +61,26 @@ public class LibraryController {
     @CrossOrigin
     @PostMapping("api/covers")
     public String coversUpload(MultipartFile file) throws Exception {
-        String folder = "D:/Code/img";
+
+        System.out.println("测试 --> 图片上传,准备阶段");
+
+//        String folder = "C:/Users/Administrator/Pictures/img-nuts";// 云端
+        String folder = "C:/Users/Alvin/Pictures/img-nuts"; // 本地
         File imageFolder = new File(folder);
         File f = new File(imageFolder, StringUtils.getRandomString(6) + file.getOriginalFilename()
                 .substring(file.getOriginalFilename().length() - 4));
         if (!f.getParentFile().exists())
             f.getParentFile().mkdirs();
+
+        System.out.println("测试 --> 图片上传,2");
+
         try {
             file.transferTo(f);
+            System.out.println("测试 --> 图片上传, 完成阶段");
             String imgURL = "http://localhost:8443/api/file/" + f.getName();
             return imgURL;
         } catch (IOException e) {
+            System.out.println("测试 --> 图片上传, 出错:"+e.toString());
             e.printStackTrace();
             return "";
         }
