@@ -14,13 +14,16 @@ public class MyWebConfigurer implements WebMvcConfigurer {
     }
 
     @Override
-    public void addInterceptors(InterceptorRegistry registry){
+    public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(getLoginIntercepter()).addPathPatterns("/**").excludePathPatterns("/login.html");
     }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/api/file/**").addResourceLocations("file:" + "C:/Users/Alvin/Pictures/img-nuts/");
-//        registry.addResourceHandler("/api/file/**").addResourceLocations("file:" + "C:/Users/Administrator/Pictures/img-nuts/");
+        // 切换本地/服务器
+        String resLoc = "file:" + "C:/Users/Alvin/Pictures/img-nuts/";
+//        String resLoc = "file:" + "C:/Users/Administrator/Pictures/img-nuts/";
+        System.out.println("测试 --> addResourceHandlers, resLoc=" + resLoc);
+        registry.addResourceHandler("/api/file/**").addResourceLocations(resLoc);
     }
 }

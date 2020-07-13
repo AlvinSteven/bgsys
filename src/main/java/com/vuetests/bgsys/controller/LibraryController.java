@@ -64,6 +64,7 @@ public class LibraryController {
 
         System.out.println("测试 --> 图片上传,准备阶段");
 
+        // 切换本地/服务器
 //        String folder = "C:/Users/Administrator/Pictures/img-nuts";// 云端
         String folder = "C:/Users/Alvin/Pictures/img-nuts"; // 本地
         File imageFolder = new File(folder);

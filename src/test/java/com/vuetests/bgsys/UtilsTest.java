@@ -1,10 +1,31 @@
-package com.vuetests.bgsys.utils;
+package com.vuetests.bgsys;
+
+import org.junit.jupiter.api.Test;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
-public class StringUtils {
+
+public class UtilsTest {
+
+    @Test
+    void test() {
+//        String timeStamp = getTimeStamp("yyyyMMddHHmmss");
+//        System.out.println(timeStamp);
+        String str = getRandomString(6);
+        System.out.println(str);
+    }
+
+    /**
+     * 获取时间戳
+     * @param pattern 例如:"yyyyMMddHHmmss"
+     * @return
+     */
+    public static String getTimeStamp(String pattern) {
+
+        return new SimpleDateFormat(pattern).format(new Date());
+    }
 
     /**
      * 获取随机字符串
@@ -23,17 +44,6 @@ public class StringUtils {
 
         // 单用随机字符串还是有可能重复, 再加上时间戳
         return sb.toString() + getTimeStamp("yyyyMMdd_HHmmss");
-    }
-
-    /**
-     * 获取时间戳
-     *
-     * @param pattern 例如:"yyyyMMddHHmmss"
-     * @return
-     */
-    public static String getTimeStamp(String pattern) {
-
-        return new SimpleDateFormat(pattern).format(new Date());
     }
 
 }
