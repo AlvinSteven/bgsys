@@ -42,7 +42,7 @@ public class UtilsTest {
             sb.append(base.charAt(number));
         }
 
-        // 单用随机字符串还是有可能重复, 再加上时间戳
+        // 单用随机字符串还是有可能重复, 再加上时间戳 d
         return sb.toString() + getTimeStamp("yyyyMMdd_HHmmss");
     }
 
