@@ -26,7 +26,7 @@ public class LibraryController {
     @CrossOrigin
     @PostMapping("/api/books")
     public Book addOrUpdate(@RequestBody Book book) throws Exception {
-        System.out.println("book:" + book.toString());
+        System.out.println("更新book:" + book.toString());
         bookService.addOrUpdate(book);
         return book;
     }
@@ -50,11 +50,14 @@ public class LibraryController {
     @CrossOrigin
     @GetMapping("/api/search")
     public List<Book> searchResult(@RequestParam("keywords") String keywords) {
+        System.out.println("查询关键词:" + keywords);
         // 关键词为空时查询出所有书籍
         if ("".equals(keywords)) {
             return bookService.list();
         } else {
-            return bookService.Search(keywords);
+            List<Book> books = bookService.Search(keywords);
+            System.out.println("查询结果:" + books.toString());
+            return books;
         }
     }
 
@@ -65,8 +68,8 @@ public class LibraryController {
         System.out.println("测试 --> 图片上传,准备阶段");
 
         // 切换本地/服务器
-        String folder = "C:/Users/Administrator/Pictures/img-nuts";// 云端
-//        String folder = "C:/Users/Alvin/Pictures/img-nuts"; // 本地
+//        String folder = "C:/Users/Administrator/Pictures/img-nuts";// 云端
+        String folder = "C:/Users/Alvin/Pictures/img-nuts"; // 本地
         File imageFolder = new File(folder);
         File f = new File(imageFolder, StringUtils.getRandomString(6) + file.getOriginalFilename()
                 .substring(file.getOriginalFilename().length() - 4));
@@ -78,7 +81,8 @@ public class LibraryController {
         try {
             file.transferTo(f);
             System.out.println("测试 --> 图片上传, 完成阶段");
-            String imgURL = "http://fancywonderland.com:8443/api/file/" + f.getName();
+//            String imgURL = "http://fancywonderland.com:8443/api/file/" + f.getName();
+            String imgURL = "http://localhost:8443/api/file/" + f.getName();
             return imgURL;
         } catch (IOException e) {
             System.out.println("测试 --> 图片上传, 出错:"+e.toString());
