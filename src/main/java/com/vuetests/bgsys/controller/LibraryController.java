@@ -67,9 +67,9 @@ public class LibraryController {
 
         System.out.println("测试 --> 图片上传,准备阶段");
 
-        // 切换本地/服务器
-//        String folder = "C:/Users/Administrator/Pictures/img-nuts";// 云端
-        String folder = "C:/Users/Alvin/Pictures/img-nuts"; // 本地
+        // todo 1.切换本地/服务器
+        String folder = "C:/Users/Administrator/Pictures/img-nuts";// 云端
+//        String folder = "C:/Users/Alvin/Pictures/img-nuts"; // 本地
         File imageFolder = new File(folder);
         File f = new File(imageFolder, StringUtils.getRandomString(6) + file.getOriginalFilename()
                 .substring(file.getOriginalFilename().length() - 4));
@@ -81,8 +81,9 @@ public class LibraryController {
         try {
             file.transferTo(f);
             System.out.println("测试 --> 图片上传, 完成阶段");
-//            String imgURL = "http://fancywonderland.com:8443/api/file/" + f.getName();
-            String imgURL = "http://localhost:8443/api/file/" + f.getName();
+            // todo 2.切换本地/服务器
+            String imgURL = "http://fancywonderland.com:8443/api/file/" + f.getName();
+//            String imgURL = "http://localhost:8443/api/file/" + f.getName();
             return imgURL;
         } catch (IOException e) {
             System.out.println("测试 --> 图片上传, 出错:"+e.toString());
